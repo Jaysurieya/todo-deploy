@@ -18,7 +18,7 @@ pipeline {
                     sshagent(['prod-server-key']) {
                         sh '''
                           ssh -o StrictHostKeyChecking=no $DEPLOY_HOST "mkdir -p $APP_DIR"
-                          scp -o StrictHostKeyChecking=no docker-compose.yml $DEPLOY_HOST:$APP_DIR/docker-compose.yml
+                          scp -o StrictHostKeyChecking=no compose.yml $DEPLOY_HOST:$APP_DIR/docker-compose.yml
                           scp -o StrictHostKeyChecking=no $ENVFILE $DEPLOY_HOST:$APP_DIR/backend.env
                         '''
                     }
