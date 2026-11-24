@@ -1,0 +1,20 @@
+name: todoapp
+services:
+  frontend:
+    image: jaysurieya/todoapp_sample_frontend:${FRONTEND_TAG:-latest}
+    networks:
+      - todoapp_net
+    ports:
+      - "8000:5173"
+    restart: unless-stopped
+
+  backend:
+    image: jaysurieya/todoapp_sample_backend:${BACKEND_TAG:-latest}
+    networks:
+      - todoapp_net
+    env_file:
+      - ./backend.env
+    restart: unless-stopped
+
+networks:
+  todoapp_net:

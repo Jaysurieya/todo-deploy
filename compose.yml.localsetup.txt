@@ -1,0 +1,24 @@
+name: todoapp
+
+services:
+  frontend:
+    build:
+        context: ./frontend
+    image: jaysurieya/todoapp_sample_frontend:1.0
+    networks:
+      - todoapp_net
+    ports:
+      - "8000:5173"
+
+  backend:
+    build:
+      context: ./backend
+    image: jaysurieya/todoapp_sample_backend:1.0
+    networks:
+      - todoapp_net
+    env_file:
+      - ./backend/.env
+
+networks:
+  todoapp_net:
+    external: true
