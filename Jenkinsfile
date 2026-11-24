@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        DEPLOY_HOST = 'ubuntu@<server-ip>'
+        DEPLOY_HOST = 'ubuntu@13.204.65.190'
         APP_DIR     = '/home/ubuntu/todoapp'
     }
 
