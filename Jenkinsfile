@@ -17,7 +17,7 @@ pipeline {
                 withCredentials([file(credentialsId: 'backend-env', variable: 'ENVFILE')]) {
                     sshagent(['prod-server-key']) {
                         sh '''
-                          ssh -o StrictHostKeyChecking=no $DEPLOY_HOST "mkdir -p $APP_DIR"
+                          ssh -o StrictHostKeyChecking=no $DEPLOY_HOST "mkdir -p $APP_DIR && rm -f $APP_DIR/backend.env"
                           scp -o StrictHostKeyChecking=no compose.yml $DEPLOY_HOST:$APP_DIR/docker-compose.yml
                           scp -o StrictHostKeyChecking=no $ENVFILE $DEPLOY_HOST:$APP_DIR/backend.env
                         '''
